@@ -16,4 +16,4 @@ def process(request):
     process = Process.objects.all().order_by('-created')
 
     data = {'process': process}
-    return render(request, 'list_process.html',data)
+    return render(request, 'processes.html', data)

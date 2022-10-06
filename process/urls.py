@@ -4,8 +4,7 @@ from process.views import home, process
 from django.urls import path
 
 urlpatterns =[
-    path('', home, name='home'),
-    path('process', process, name='process'),
+    path('', process, name='process'),
 ]
 
 if settings.DEBUG:
