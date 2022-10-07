@@ -17,9 +17,18 @@ class Parts(Base):
         verbose_name = 'Part'
         verbose_name_plural = 'Parts'
 
+class JudicialClass(Base):
+    name = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Judicial Class'
+        verbose_name_plural = 'Judicial Classes'
 class Process(Base):
     number = models.CharField(max_length=1000)
-    judicialClass = models.CharField(max_length=500)
+    judicialClass = models.ForeignKey(JudicialClass, on_delete=models.CASCADE, default=None)
     topic = models.CharField(max_length=1000)
     judge = models.CharField(max_length=500)
     parts = models.ManyToManyField(Parts)
