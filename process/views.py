@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from process.models import Process, Parts, JudicialClass
+import requests
+from bs4 import BeautifulSoup
 # Create your views here.
 
 def home(request):
@@ -17,8 +19,6 @@ def process(request):
     judicialclass = JudicialClass.objects.all()
     parts = Parts.objects.all()
     
-    print(parts)
-    print(judicialclass)
     data = {
         'process': process,
         'JudicialClass': judicialclass,
@@ -32,3 +32,15 @@ def parts(request):
 
     data = {'parts': parts}
     return render(request, 'parts.html', data)
+
+def scraping(request):
+    url = 'https://www.tjmg.jus.br/portal-da-transparencia/contracheque/'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    table = soup.find('table', attrs={'class': 'table table-striped table-bordered'})
+    rows = table.find_all('tr')
+    for row in rows:
+        cols = row.find_all('td')
+        cols = [ele.text.strip() for ele in cols]
+        print(cols)
+    return render(request, 'scraping.html')
