@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from process.api.serializers import ProcessSerializer
 from process.models import Process, Parts, JudicialClass
 import requests
 from bs4 import BeautifulSoup
@@ -27,20 +28,32 @@ def process(request):
     }
     return render(request, 'processes.html', data)
 
-def parts(request):
-    parts = Parts.objects.all()
+# def parts(request):
+#     parts = Parts.objects.all()
 
-    data = {'parts': parts}
-    return render(request, 'parts.html', data)
+#     data = {'parts': parts}
+#     return render(request, 'parts.html', data)
 
-def scraping(request):
-    url = 'https://www.tjmg.jus.br/portal-da-transparencia/contracheque/'
+
+def scraping_parts(request):
+    url = 'http://127.0.0.1:5500/process/templates/processo-02.html' 
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    table = soup.find('table', attrs={'class': 'table table-striped table-bordered'})
-    rows = table.find_all('tr')
-    for row in rows:
-        cols = row.find_all('td')
-        cols = [ele.text.strip() for ele in cols]
-        print(cols)
-    return render(request, 'scraping.html')
+    if response.status_code == 200:
+        print('ok')
+        content = response.content
+        soup = BeautifulSoup(content, 'html.parser')
+        parts = soup.find('ul',{'class':'list-group list-group-flush list-group-party'})
+        envolvidos = parts.find_all('span')
+        full_parts = []
+        for i in envolvidos:
+            full_parts.append(i.text)
+            # def clean_parts(self):
+            #     data = self.cleaned_data["full_parts"]
+            #     data = data.replace("\n", " ")
+            #     return data
+        print(full_parts)       
+    else:
+        print('error')
+
+    data = {'parts': full_parts}
+    return render(request, 'parts.html', data)
