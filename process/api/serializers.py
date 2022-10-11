@@ -1,4 +1,4 @@
-from process.models import Process, Parts, JudicialClass
+from process.models import Process, Parts
 from rest_framework import serializers
 
 class PartsSerializer(serializers.Serializer):
@@ -8,19 +8,6 @@ class PartsSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Parts.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.save()
-        return instance
-
-class JudicialClassSerializer(serializers.Serializer):
-    class Meta:
-        model = JudicialClass
-        fields = ('name',)
-
-    def create(self, validated_data):
-        return JudicialClass.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)

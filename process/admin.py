@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Process, Parts, JudicialClass
+from .models import Process, Parts
 
 @admin.register(Process)
 class ProcessAdmin(admin.ModelAdmin):
@@ -13,9 +13,3 @@ class PartsAdmin(admin.ModelAdmin):
     list_display = ('name', 'created', 'modified')
     list_filter = ('name',)
     search_fields = ('name',)   
-
-@admin.register(JudicialClass)
-class JudicialClassAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created', 'modified')
-    list_filter = ('name',)
-    search_fields = ('name',)
