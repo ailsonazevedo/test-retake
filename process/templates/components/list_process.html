@@ -16,8 +16,8 @@
           </ul>
           <p class="card-text">Juiz: {{i.judge}}</p>
         </div>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <i class="bi bi-pencil-square"><a href="{% url 'process_detail' i.id %}" class="card-link">Abrir</a></i>
+        <i class="bi bi-trash3-fill" style="color: red"><a href="{% url 'process_delete' i.id %}" class="card-link">Excluir</a></i>
       </div>
   </div>
   {% endfor %}
