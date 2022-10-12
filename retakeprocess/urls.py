@@ -20,6 +20,6 @@ from process.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('process/', include('process.urls'), name="processes"),
+    path('process/', include('process.urls'), name='processes'),
     path('', home, name='home'),
 ]
