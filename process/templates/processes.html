@@ -10,12 +10,12 @@
         <header class="">
             {% include 'components/navbar.html'%}
         </header>
-        <div class="container mt-3">
-        <form role="search">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        </div>
+        {% include 'components/search.html'%}
        <div class="container mt-2">
+            <a class="btn btn-success my-2" href="{% url 'add_process'%}">
+                <i class="bi bi-plus-lg"></i>
+                Novo Processo
+            </a>
             {% include 'components/list_process.html'%}
        </div>
         {%endblock%}

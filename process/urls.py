@@ -1,10 +1,21 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from process.views import parts, process_delete, process_detail, scraping_process1, process, scraping_process2
+from process.views import (
+    parts,
+    parts_add, 
+    process_add, 
+    process_delete, 
+    process_detail, 
+    scraping_process1, 
+    process, 
+    scraping_process2
+)
 from django.urls import path
 
 urlpatterns =[
     path('', process, name='process'),
+    path('add', process_add, name='add_process'),
+    path('add_parts', parts_add, name='add_parts'),
     path('detail/<int:pk>', process_detail, name='process_detail'),
     path('delete/<int:pk>', process_delete, name='process_delete'),
     path('partes', parts, name='parts'),

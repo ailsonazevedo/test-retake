@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from process.api.serializers import ProcessSerializer
+from process.forms import PartsForm, ProcessForm
 from process.models import Process, Parts
 import requests
 from bs4 import BeautifulSoup
@@ -16,6 +18,7 @@ def home(request):
     }
     return render(request, 'index.html', data)
 
+
 def process(request):
     process = Process.objects.all().order_by('-created')
     parts = Parts.objects.all()
@@ -27,6 +30,29 @@ def process(request):
     }
     return render(request, 'processes.html', data)
 
+
+def process_add(request):
+    if request.method == 'POST':
+        form = ProcessForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('process')
+    else:
+        form = ProcessForm()         
+    return render(request, 'components/add_process.html', {'form': form})
+
+
+def parts_add(request):
+    if request.method == 'POST':
+        parts_form = PartsForm(request.POST)
+        if parts_form.is_valid():
+            parts_form.save()
+            return redirect('add_process')
+    else:
+        parts_form = PartsForm()         
+    return render(request, 'components/add_parts.html', {'parts_form': parts_form})
+
+
 def process_detail(request, pk):
     process = Process.objects.get(id=pk)
     parts = Parts.objects.all()
@@ -34,12 +60,14 @@ def process_detail(request, pk):
         'process': process,
         'parts': parts,
     }
-    return render(request, 'components\process_detail.html', data)
+    return render(request, 'components/process_detail.html', data)
+
 
 def process_delete(request, pk):
     process = Process.objects.get(id=pk)
     process.delete()
     return redirect('process')
+
 
 def parts(request):
     parts = Parts.objects.all()
@@ -47,6 +75,7 @@ def parts(request):
         'parts': parts,
     }
     return render(request, 'parts.html', data)
+
 
 def scraping_process1(request):
     url = 'http://127.0.0.1:5500/process/templates/processo-01.html'
@@ -93,6 +122,7 @@ def scraping_process1(request):
     else:
         print('error request')
     return render(request, 'process1.html')
+
 
 def scraping_process2(request):
     url = 'http://127.0.0.1:5500/process/templates/processo-02.html'
