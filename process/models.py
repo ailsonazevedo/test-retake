@@ -18,11 +18,11 @@ class Parts(Base):
         verbose_name_plural = 'Parts'
 
 class Process(Base):
-    number = models.CharField(max_length=1000, verbose_name='Número do Processo')
+    number = models.CharField(max_length=1000, verbose_name='Número do Processo:', unique=True)
     judicialClass = models.CharField(max_length=1000, verbose_name='Classe:')
     topic = models.CharField(max_length=1000, verbose_name='Assunto:')
     judge = models.CharField(max_length=500, verbose_name='Juiz:')
-    parts = models.ManyToManyField(Parts, related_name='parts', verbose_name='Partes')
+    parts = models.ManyToManyField(Parts, related_name='parts', verbose_name='Partes:')
     category = models.CharField(max_length=500, null=True, blank=True, verbose_name='Categoria:')
 
     def __str__(self):
