@@ -1,0 +1,44 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Detalhe Processo</title>
+        {% include 'components/head.html' %}
+    </head>
+    <body>
+        <header>
+            {% include 'components/navbar.html' %}
+        </header>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <h3 class="card-title">Nº {{process.number}}</h3>
+                        <div class="col">
+                          <h5 class="card-subtitle mt-2 text-muted">
+                            Classe: {{process.judicialClass}}
+                          </h5>
+                          <h6 class="card-text mt-2">Assunto: {{process.topic}}</h6>
+                          <h6 class="card-text mt-2">Juiz: {{process.judge}}</h6>
+                          <h6 class="card-text mt-2">Categoria: {{process.category}}</h6>
+                          <hr>
+                          <div class="container mb-3">
+                            <h5 class="card-text">Partes:</h5>
+                          <ol class="list-process list-group list-group-numbered">
+                            {% for part in process.parts.all%}
+                            <li class="list-group-item">{{part.name}}</li>
+                            {% endfor %}
+                          </ol>
+                          </div>
+                          <a class="btn btn-primary mt-3" href="{% url 'process_update' process.pk %}">
+                            <i class="bi bi-pencil-square"></i>
+                            Editar Processo
+                        </a>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

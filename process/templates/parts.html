@@ -11,6 +11,9 @@
             {% include 'components/navbar.html'%}
         </header>
         <h1 class="text-center">Partes</h1>
+        <div class="container">
+            <a class="btn btn-primary mt-3" href="{% url 'add_parts' %}">Adicionar Parte</a>
+        </div>        
         {% for part in parts %}
         <p class="">{{part}}</p>     
         {% endfor %}

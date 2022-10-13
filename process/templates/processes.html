@@ -17,6 +17,22 @@
                 Novo Processo
             </a>
             {% include 'components/list_process.html'%}
+            <div class="pagination justify-content-center mt-4">
+                <span class="step-links">
+                    {% if process_list.has_previous %}
+                        <a class="" href="?page={{ process_list.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                
+                    <span class="current">
+                        {{ process_list.number }} de {{ process_list.paginator.num_pages }}
+                    </span>
+                
+                    {% if ofertas_list.has_next %}
+                        <a href="?page={{ process_list.next_page_number }}">Próxima</a>
+                    {% endif %}
+                </span>
+            </div>
+  
        </div>
         {%endblock%}
         <div class="container ">

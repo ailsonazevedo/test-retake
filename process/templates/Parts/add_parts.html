@@ -19,14 +19,15 @@
             <div class="container">
                 
                 <div class="d-flex justify-content-between my-4 align-items-center">
-                    <h2 class="">Nova Parte:</h2>
+                    <h2 class="">Adicionar Parte</h2>
                 </div>
                 <form method="post" class="form">
                     {% csrf_token %}
+                    {{ parts_form.as_p }}
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
             </div>       
             {% endblock %}
-            {% include 'components/add_parts.html'%}
         </main>
         <footer class="footer">
             {% include 'components/footer.html'%}
