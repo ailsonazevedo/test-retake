@@ -84,7 +84,7 @@ def parts_add(request):
         parts_form = PartsForm(request.POST)
         if parts_form.is_valid():
             parts_form.save()
-            return redirect('add_process')
+            return redirect('parts')
     else:
         parts_form = PartsForm()         
     return render(request, 'Parts/add_parts.html', {'parts_form': parts_form})

@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Nº {{i.number}}</h5>
                             <p class="card-text">{{i.judicialClass}}</p>
-                            <a href="#" class="btn btn-primary">Ver Processo</a>
+                            <a href="{% url 'process_detail' i.id %}" class="btn btn-primary">Ver Processo</a>
                         </div>
                     </div>
                     {% endfor %}
