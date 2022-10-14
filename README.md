@@ -1,12 +1,12 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Test Retake" />
+  <img src="./static/img/retake-logo-mini-png.png" alt="Test Retake" width="100" height="100" />
 
   &#xa0;
 
   <!-- <a href="https://testretake.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Test Retake</h1>
+<h1 align="center">Test Retake Brasil</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/ailsonazevedo/test-retake?color=56BEB8">
@@ -26,9 +26,9 @@
 
  <!-- Status  -->
 
-<h4 align="center"> 
+<!-- <h4 align="center"> 
 	🚧  Test Retake 🚀 Under construction...  🚧
-</h4> 
+</h4>  -->
 
 <hr>
 
@@ -46,46 +46,128 @@
 
 ## :dart: About ##
 
-Describe your project
+Este projeto tem como objetivo de cadastrar, editar e remover Processos Judiciais. Conta também com um\
+scraping, onde são cadastrados no banco as informações recebidas.
+
+Tela de Login admin:\
+<img src="https://i.ibb.co/yfvVNNZ/tela-login.png" alt="Tela login" />
+
+Tela do ambiente admin:\
+<img src="https://i.ibb.co/ftD2dM1/tela-admin.png" alt="Tela admin" />
+
+Tela Inicial:\
+<img src="https://i.ibb.co/WtQfxKz/tela-home.png" alt="Tela home" />
+
+Tela de Processos:\
+<img src="https://i.ibb.co/BrpHnQK/tela-process.png" alt="tela processos" />
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Cadastrar Processos\
+:heavy_check_mark: Editar Processos\
+:heavy_check_mark: Remover Processos\
+:heavy_check_mark: Cadastrar Partes\
+:heavy_check_mark: Remover Partes\
+:heavy_check_mark: Scraping de Processos
 
 ## :rocket: Technologies ##
 
-The following tools were used in this project:
+Tecnologias e libs usadas no projeto:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Django](https://www.djangoproject.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [django-bootstrap5](https://django-bootstrap-v5.readthedocs.io/en/latest/#)
+- [django-jazzmin](https://django-jazzmin.readthedocs.io/)
+- [Docker](https://www.docker.com/)
+- [pipenv](https://pipenv.pypa.io/en/latest/)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+Before starting :checkered_flag:, Para rodar o projeto você vai precisar do [Git](https://git-scm.com), [Docker](https://www.docker.com/) 
+e [Python 3.10](https://www.python.org/) instalados.
 
 ## :checkered_flag: Starting ##
 
 ```bash
-# Clone this project
+# Clone do projeto
 $ git clone https://github.com/ailsonazevedo/test-retake
 
-# Access
+# entrar na pasta raiz do projeto
 $ cd test-retake
+```
+Digite o seguinte comando para iniciar o container
+```bash
+$ docker-compose up
+```
+Se desejar fazer o build de uma nova imagem, digite o seguinte comando no seu terminal:
+```bash
+$ docker-compose up --build
+```
+Pronto, após iniciar o container o projeto estará disponível na seguinte url:
+```bash
+$ http://127.0.0.1:8000/
+```
+Criando um usuário no django pelo container
+```bash
+$ docker ps
+```
+Copie o id do seu container, aqui o meu id é este marcado em vermelho:\
+<img src="https://i.ibb.co/QFfyFC5/tela-docker-ps.png" alt="docker ps"/>
 
-# Install dependencies
-$ yarn
+Em seguida rode o segundo comando para entrar no modo interativo:
+```bash
+$ docker exec -it "containerid" sh
+```
+<img src="https://i.ibb.co/DQR6ndm/tela-docker-exec.png" alt="docker exec"/>
 
-# Run the project
-$ yarn start
+Após entrar no modo interativo basta criar o super usuário
+```bash
+$ python manage.py createsuperuser
+```
+<img src="https://i.ibb.co/RNCVV3P/tela-sh-createuser.png" alt="create user" />
 
-# The server will initialize in the <http://localhost:3000>
+Para sair do modo interativo basta digitar:
+```bash
+$ exit
 ```
 
+
+<h2>Rodando Localmente:</h2>
+
+Caso deseje rodar o projeto em uma Máquina Virtual local, siga os seguintes passos:\
+1 - Crie uma Máquina Virtual
+```
+$ python -m venv nomedamaquina
+```
+2 - Ative a Máquina Virtual
+```bash
+# Se você usa Windows
+$ nomedamaquina/Scripts/active
+
+# Se você usa Linux
+$ source nomedamaquina/bin/activate
+```
+3 - Instalar as Dependências
+```bash
+# Ele irá instalar todas as dependências encontradas no Pipfile
+$ pipenv install
+```
+4 - Crie as Migrações
+```bash
+$ python manage.py migrate
+```
+5 - Crie um Usuário Admin
+```bash
+$ python manage.py createsuperuser
+```
+6 - Agora é só iniciar o servidor
+```bash
+$ python manage.py runserver
+```
+Url para acessar:
+```bash
+$ http://127.0.0.1:8000/
+```
 ## :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
