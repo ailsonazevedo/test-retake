@@ -95,6 +95,10 @@ $ git clone https://github.com/ailsonazevedo/test-retake
 # entrar na pasta raiz do projeto
 $ cd test-retake
 ```
+Para baixar a imagem do docker:
+```bash
+$ docker run ailsonazevedo1/test-retake
+```
 Digite o seguinte comando para iniciar o container
 ```bash
 $ docker-compose up
