@@ -12,6 +12,7 @@ bs4 = "*"
 beautifulsoup4 = "*"
 djangorestframework = "*"
 django-bootstrap5 = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 

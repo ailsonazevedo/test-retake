@@ -101,7 +101,7 @@ def parts_update(request, pk):
         parts_form = PartsForm(instance=parts)
     return render(request, 'Parts/parts_update.html', {'parts_form': parts_form})
 
-def parts_delete(pk):
+def parts_delete(self, pk):
     parts = Parts.objects.get(id=pk)
     parts.delete()
     return redirect('parts')

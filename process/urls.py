@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.urls import path
 from process.views import (
     parts,
-    parts_add, 
+    parts_add,
+    parts_delete, 
     process_add, 
     process_delete, 
     process_detail,
@@ -22,6 +23,7 @@ urlpatterns =[
     path('update/<int:pk>', process_update, name='process_update'),
     path('delete/<int:pk>', process_delete, name='process_delete'),
     path('partes', parts, name='parts'),
+    path('parts/parte_delete/<int:pk>', parts_delete, name='parts_delete'),
     path('process1', scraping_process1, name='process1'),
     path('process2', scraping_process2, name='process2'),
 ]
